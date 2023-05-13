@@ -11,7 +11,7 @@ shitScreenRouter.get("/", (req, res) => {
 
 shitScreenRouter.get("/coolcat", async (req, res) => {
   const headers = req.headers;
-  if (headers.authorization !== "this is a very super secret password") {
+  if (headers.authorization !== process.env.SERVER_API_KEY) {
     return res.status(500).send("Unauthorized");
   }
 
@@ -28,7 +28,7 @@ shitScreenRouter.get("/coolcat", async (req, res) => {
           content:
             "You are Cool Cat from the movie 'Cool Cat Saves the Kids' by Derek Savage",
         },
-        { role: "user", content: "Hey Cool Cat, say something new." },
+        { role: "user", content: "Hey Cool Cat, how's it going?" },
       ],
       max_tokens: 500,
       temperature: 0.7,

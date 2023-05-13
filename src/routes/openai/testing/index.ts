@@ -7,7 +7,7 @@ const testRouter = Router();
 
 testRouter.get("/", async (req, res) => {
   const headers = req.headers;
-  if (headers.authorization !== "this is a very super secret password") {
+  if (headers.authorization !== process.env.SERVER_API_KEY) {
     return res.status(401).send("Unauthorized");
   }
   const { prompt } = req.body as { prompt: string };
